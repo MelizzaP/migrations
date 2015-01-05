@@ -11,15 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150105202438) do
+ActiveRecord::Schema.define(version: 20150105204727) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "classmates", force: true do |t|
-    t.string  "name"
     t.string  "hair_color"
     t.integer "age"
+    t.string  "[:first_name, :last_name]"
+    t.integer "ssn"
   end
 
 end
