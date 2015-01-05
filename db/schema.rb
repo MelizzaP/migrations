@@ -11,10 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150105215654) do
+ActiveRecord::Schema.define(version: 20150105220912) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "assignments", force: true do |t|
+    t.integer "challenges_id"
+    t.integer "groups_id"
+  end
+
+  create_table "challenges", force: true do |t|
+    t.string "title"
+    t.string "content"
+  end
 
   create_table "classmates", force: true do |t|
     t.string  "hair_color"
@@ -26,6 +36,16 @@ ActiveRecord::Schema.define(version: 20150105215654) do
   create_table "customers", force: true do |t|
     t.integer "product_id"
     t.decimal "total"
+  end
+
+  create_table "groups", force: true do |t|
+    t.string "groupname"
+  end
+
+  create_table "mks_users", force: true do |t|
+    t.string "username"
+    t.string "email"
+    t.string "password"
   end
 
   create_table "posts", force: true do |t|
@@ -42,11 +62,22 @@ ActiveRecord::Schema.define(version: 20150105215654) do
     t.integer "special_id"
   end
 
+  create_table "responses", force: true do |t|
+    t.integer "challenges_id"
+    t.integer "mks_users_id"
+    t.boolean "correct"
+  end
+
   create_table "users", force: true do |t|
     t.string  "username"
     t.string  "email"
     t.string  "password"
     t.integer "zipcode"
+  end
+
+  create_table "users_groups", force: true do |t|
+    t.integer "mks_users_id"
+    t.integer "groups_id"
   end
 
 end
